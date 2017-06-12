@@ -1,17 +1,17 @@
 spring-boot-starter-dubbo
 ===================================
 
-[中文版文档](https://github.com/alibaba/spring-boot-starter-dubbo/blob/master/README_zh.md)
+[English](https://github.com/chestnutzz/spring-boot-starter-dubbo/blob/master/README_en.md)
 
-Spring Boot with dubbo support. Dubbo is an RPC framework.
+Spring Boot with dubbo support. dubbo是一个RPC框架。 
 
-Support jdk version 1.6 or 1.6+
+支持jdk版本为1.6或者1.6+
 
-(please import googlestyle-java.xml if you want to modify the code)
+（在修改源码前，请导入googlestyle-java.xml以保证一致的代码格式）
 
-### How to publish dubbo
+### 如何发布dubbo服务
 
-* add Dependencies:
+* 添加依赖:
 
 ```xml
     <dependency>
@@ -20,7 +20,8 @@ Support jdk version 1.6 or 1.6+
         <version>1.0.0-SNAPSHOT</version>
     </dependency>
 ```
-* add dubbo configuration in application.properties, demo:
+
+* 在application.properties添加dubbo的相关配置信息,样例配置如下:
 
 ```properties
 spring.dubbo.appname=spring-boot-starter-dubbo-provider-test
@@ -28,7 +29,7 @@ spring.dubbo.registry=multicast://224.0.0.0:1111
 spring.dubbo.protocol=dubbo
 ```
 
-* then add `@EnableDubboConfiguration` on Spring Boot Application, indicates that dubbo is enabled.(web or non-web application can use dubbo provider)
+* 接下来在Spring Boot Application的上添加`@EnableDubboConfiguration`, 表示要开启dubbo功能. (dubbo provider服务可以使用或者不使用web容器)
 
 ```java
 @SpringBootApplication
@@ -38,7 +39,7 @@ public class DubboProviderLauncher {
 }
 ```
 
-* code your dubbo service, add `@Service`(import com.alibaba.dubbo.config.annotation.Service) on your service class, and interfaceClass is the interface which will be published.
+* 编写你的dubbo服务,只需要添加要发布的服务实现上添加`@Service`（import com.alibaba.dubbo.config.annotation.Service）注解 ,其中interfaceClass是要发布服务的接口.
 
 ```java
 @Service(interfaceClass = IHelloService.class)
@@ -47,12 +48,12 @@ public class HelloServiceImpl implements IHelloService {
 }
 ```
 
-* start Spring Boot.
+* 启动你的Spring Boot应用,观察控制台,可以看到dubbo启动相关信息.
 
 
-### How to consume Dubbo
+### 如何消费Dubbo服务
 
-* add Dependencies:
+* 添加依赖:
 
 ```xml
     <dependency>
@@ -62,7 +63,7 @@ public class HelloServiceImpl implements IHelloService {
     </dependency>
 ```
 
-* add dubbo configuration in application.properties, demo:
+* 在application.properties添加dubbo的相关配置信息,样例配置如下:
 
 ```properties
 spring.dubbo.appname=spring-boot-starter-dubbo-consumer-test
@@ -70,7 +71,7 @@ spring.dubbo.registry=multicast://224.0.0.0:1111
 spring.dubbo.protocol=dubbo
 ```
 
-* then add `@EnableDubboConfiguration` on Spring Boot Application
+* 开启`@EnableDubboConfiguration`
 
 ```java
 @SpringBootApplication
@@ -80,19 +81,18 @@ public class DubboConsumerLauncher {
 }
 ```
 
-* injection interface by the `@DubboConsumer` annotation.
+* 通过`@DubboConsumer`注入需要使用的interface.
 
 ```java
 @Component
 public class HelloConsumer {
   @DubboConsumer
   private IHelloService iHelloService;
-
 }
 ```
 
-### Reference
+### 参考文档
 
-* dubbo: http://dubbo.io/
-* spring-boot: http://projects.spring.io/spring-boot/
-* spring-boot-starter-dubbo: https://github.com/linux-china/spring-boot-dubbo
+* dubbo 介绍: http://dubbo.io/
+* spring-boot 介绍: http://projects.spring.io/spring-boot/
+* spring-boot-starter-dubbo 参考: https://github.com/linux-china/spring-boot-dubbo
