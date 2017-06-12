@@ -50,6 +50,8 @@ public class DubboAutoConfiguration {
   public RegistryConfig dubboRegistryConfig() {
     RegistryConfig registryConfig = new RegistryConfig();
     registryConfig.setAddress(this.properties.getRegistry());
+    registryConfig.setClient(this.properties.getClient());
+    registryConfig.setTimeout(this.properties.getTimeout());
     return registryConfig;
   }
 

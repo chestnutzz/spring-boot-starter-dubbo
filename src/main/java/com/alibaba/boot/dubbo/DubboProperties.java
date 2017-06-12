@@ -20,6 +20,10 @@ public class DubboProperties {
    */
   private String registry;
   /**
+   * dubbo registry client
+   */
+  private String client;
+  /**
    * communication protocol, default is dubbo
    */
   private String protocol = "dubbo";
@@ -41,6 +45,8 @@ public class DubboProperties {
    * dubbo group, may override by {@link com.alibaba.dubbo.config.annotation.Service#group()}
    */
   private String group = "";
+  
+  private int timeout;
 
   public String getAppname() {
     return this.appname;
@@ -58,7 +64,15 @@ public class DubboProperties {
     this.registry = registry;
   }
 
-  public String getProtocol() {
+  public String getClient() {
+	return client;
+}
+
+public void setClient(String client) {
+	this.client = client;
+}
+
+public String getProtocol() {
     return this.protocol;
   }
 
@@ -96,6 +110,14 @@ public class DubboProperties {
 
   public void setGroup(String group) {
     this.group = group;
+  }
+
+  public int getTimeout() {
+    return timeout;
+  }
+
+  public void setTimeout(int timeout) {
+    this.timeout = timeout;
   }
 
   @Override
